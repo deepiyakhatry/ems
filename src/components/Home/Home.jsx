@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className='home'>
       <h1>Expense Management System</h1>
-      <button type='button' class='btn btn-success'>
+      <button type='button' class='btn btn-success mt-2'>
         <Link to='/register'>Register Now!</Link>
       </button>
     </div>
