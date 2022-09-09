@@ -1,8 +1,8 @@
 import './App.css';
-import Home from './components/Home/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { List } from './components/AllDepartments/List';
+import Home from './components/Home/Home';
 import Register from './components/Register/Register';
+import Employee from './components/Employee/Employee';
 
 function App() {
   return (
@@ -10,8 +10,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/list' element={<List />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/employee' element={<Employee />} />
         </Routes>
       </BrowserRouter>
     </div>
