@@ -4,23 +4,23 @@ import { Link } from 'react-router-dom';
 
 const Register = () => {
   return (
-    <div className='container'>
-      <div className='row'>
-        <div className='register mt-5 m-auto'>
-          <h3 className='mb-4'>Expense Register</h3>
-          <table cellPadding='20px' className='first'>
+    <div className="container">
+      <div className="row">
+        <div className="register mt-5 m-auto">
+          <h3 className="mb-4">Expense Register</h3>
+          <table cellPadding="20px" className="first">
             <tbody>
               <tr>
                 <td>Department Name</td>
                 <td>
                   <select
-                    class='form-control'
-                    aria-label='Default select example'
+                    class="form-control"
+                    aria-label="Default select example"
                   >
                     <option selected>Search Department</option>
-                    <option value='1'>One</option>
-                    <option value='2'>Two</option>
-                    <option value='3'>Three</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
                   </select>
                 </td>
               </tr>
@@ -28,13 +28,13 @@ const Register = () => {
                 <td>Division</td>
                 <td>
                   <select
-                    class='form-control'
-                    aria-label='Default select example'
+                    class="form-control"
+                    aria-label="Default select example"
                   >
                     <option selected>Search Division</option>
-                    <option value='1'>One</option>
-                    <option value='2'>Two</option>
-                    <option value='3'>Three</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
                   </select>
                 </td>
               </tr>
@@ -42,13 +42,13 @@ const Register = () => {
                 <td>Account</td>
                 <td>
                   <select
-                    class='form-control'
-                    aria-label='Default select example'
+                    class="form-control"
+                    aria-label="Default select example"
                   >
                     <option selected>Search Account</option>
-                    <option value='1'>One</option>
-                    <option value='2'>Two</option>
-                    <option value='3'>Three</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
                   </select>
                 </td>
               </tr>
@@ -56,55 +56,74 @@ const Register = () => {
                 <td>Summary Column</td>
                 <td>
                   <textarea
-                    class='form-control'
-                    id='form-control'
-                    rows='2'
+                    class="form-control"
+                    id="form-control"
+                    rows="2"
                   ></textarea>
                 </td>
               </tr>
               <tr>
                 <td>Payment Status</td>
                 <td>
-                  <input type='text' className='form-control'></input>
+                  <input type="text" className="form-control"></input>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td className="ds--flex">
+                  <div className="ds--flex-column">
+                    <label className="text-align--center">
+                      Arrival Station
+                    </label>
+                    <input type="text" className="form-control mr--10" />
+                  </div>
+                  <span className="span--tilde ds--flex justify-content--center">
+                    &#126;
+                  </span>
+                  <div className="ds--flex-column">
+                    <label className="text-align--center">
+                      Arrival Station
+                    </label>
+                    <input type="text" className="form-control" />
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td>Amount</td>
                 <td>
-                  <input type='text' className='form-control'></input>
+                  <input type="text" className="form-control"></input>
                 </td>
               </tr>
               <tr>
                 <td>Note</td>
                 <td>
                   <textarea
-                    class='form-control'
-                    id='form-control'
-                    rows='3'
+                    class="form-control"
+                    id="form-control"
+                    rows="3"
                   ></textarea>
                 </td>
               </tr>
               <tr>
                 <td></td>
-
-                <div className='btn-row'>
+                <div className="btn-row">
                   <td>
-                    <Link to='/create'>
-                      <button type='button' class='btn btn-primary'>
+                    <Link to="/create">
+                      <button type="button" class="btn btn-primary">
                         Register
                       </button>
                     </Link>
                   </td>
                   <td>
-                    <Link to='/update'>
-                      <button type='button' class='btn btn-success'>
+                    <Link to="/update">
+                      <button type="button" class="btn btn-success">
                         Update
                       </button>
                     </Link>
                   </td>
                   <td>
-                    <Link to='/delete'>
-                      <button type='button' class='btn btn-danger'>
+                    <Link to="/delete">
+                      <button type="button" class="btn btn-danger">
                         Delete
                       </button>
                     </Link>

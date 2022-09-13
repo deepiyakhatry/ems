@@ -46,6 +46,31 @@ table td {
   padding: 0 15px;
 }
 
+.ds--flex {
+  display: flex;
+}
+
+.ds--flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-align--center {
+  text-align: center;
+}
+
+.justify-content--center {
+  align-items: center;
+}
+
+.span--tilde {
+  font-size: 40px;
+}
+
+.mr--10 {
+  margin-right: 10px !important ;
+}
+
 @media (max-width: 768px) {
   .register {
     max-width: 100% !important;
