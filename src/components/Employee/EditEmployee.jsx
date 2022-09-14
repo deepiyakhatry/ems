@@ -5,25 +5,10 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
 
-const Employee = () => {
-  const [users, setUsers] = useState([]);
-  const { id } = useParams();
-
-  useEffect(() => {
-    loadUsers();
-  }, []);
-
-  const loadUsers = async () => {
-    const result = await axios.get('http://localhost:8080/users');
-    setUsers(result.data);
-  };
-
-  const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/user/${id}`);
-    loadUsers();
-  };
-
+const EditEmployee = () => {
   let navigate = useNavigate();
+
+  const { id } = useParams();
 
   const [employee, setEmployee] = useState({
     employee_no: '',
@@ -34,7 +19,7 @@ const Employee = () => {
     approval_month_to: '',
     payment_date_from: '',
     payment_date_to: '',
-    approval_status: 'Approved',
+    approval_status: '',
   });
 
   const {
@@ -53,10 +38,21 @@ const Employee = () => {
     setEmployee({ ...employee, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    loadEmployee();
+  }, []);
+
   const onSubmit = async (e) => {
-    await axios.post('http://localhost:8080/employee', employee);
+    e.preventDefault();
+    await axios.put(`http://localhost:8080/employee/${id}`, employee);
     navigate('/employee');
-    console.log(employee);
+  };
+
+  const loadEmployee = async () => {
+    const employeeResult = await axios.get(
+      `http://localhost:8080/employee/${id}`
+    );
+    setEmployee(employeeResult.data);
   };
 
   return (
@@ -182,67 +178,16 @@ const Employee = () => {
         <Row className='ms-auto'>
           <Col className='d-flex justify-content-end gap-2'>
             <Button variant='success' type='submit'>
-              Add Data
+              Update
             </Button>
-            <Link to='/employee-data' className='btn btn-primary'>
-              Show Data
+            <Link to='/employee-data' className='btn btn-danger'>
+              Cancel
             </Link>
           </Col>
         </Row>
       </Form>
-      <Table striped hover className=' mt-5 shadow-lg rounded '>
-        <thead className='border-bottom border-dark'>
-          <tr>
-            <th>S.N</th>
-            <th>dept name</th>
-            <th>division</th>
-            <th>account</th>
-            <th>summary</th>
-            <th>payment status</th>
-            <th>arrival station</th>
-            <th>getting off station</th>
-            <th>amount</th>
-            <th>note</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => {
-            return (
-              <tr key={index}>
-                <th scope='row' key={index}>
-                  {index + 1}
-                </th>
-                <td>{user.dept_name}</td>
-                <td>{user.division}</td>
-                <td>{user.account}</td>
-                <td>{user.summary}</td>
-                <td>{user.payment_status}</td>
-                <td>{user.arrival_station}</td>
-                <td>{user.getting_off_station}</td>
-                <td>{user.amount}</td>
-                <td>{user.note}</td>
-                <td className='d-flex'>
-                  <Link
-                    to={`/edituser/${user.id}`}
-                    className='btn btn-outline-primary mx-2'
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    onClick={() => deleteUser(user.id)}
-                    className='btn btn-outline-danger mx-2'
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
     </Container>
   );
 };
 
-export default Employee;
+export default EditEmployee;

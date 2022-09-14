@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import './Register.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useEffect } from 'react';
 
-const Register = () => {
+const EditUser = () => {
   let navigate = useNavigate();
+
+  const { id } = useParams();
 
   const [user, setUser] = useState({
     dept_name: '',
@@ -34,17 +37,26 @@ const Register = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    loadUser();
+  }, []);
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:8080/user', user);
+    await axios.put(`http://localhost:8080/user/${id}`, user);
     navigate('/employee');
+  };
+
+  const loadUser = async () => {
+    const result = await axios.get(`http://localhost:8080/user/${id}`);
+    setUser(result.data);
   };
 
   return (
     <div className='container'>
       <div className='row'>
         <div className='register mt-5 m-auto'>
-          <h3 className='mb-4'>Expense Register</h3>
+          <h3 className='mb-4'>Edit Expense Data</h3>
           <form onSubmit={(e) => onSubmit(e)}>
             <table cellPadding='20px' className='first'>
               <tbody>
@@ -95,6 +107,7 @@ const Register = () => {
                       onChange={(e) => onInputChange(e)}
                       name='account'
                       value={account}
+                      defaultValue='primary'
                       aria-label='Default select example'
                     >
                       <option selected value='primary'>
@@ -196,12 +209,12 @@ const Register = () => {
                   <td></td>
                   <div className='btn-row'>
                     <td>
-                      <button type='submit' className='btn btn-primary'>
-                        Register
+                      <button type='submit' className='btn btn-success'>
+                        Update
                       </button>
                     </td>
                     <td>
-                      <Link to='/' type='submit' className='btn btn-danger'>
+                      <Link to='/employee' className='btn btn-danger'>
                         Cancel
                       </Link>
                     </td>
@@ -216,4 +229,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default EditUser;
