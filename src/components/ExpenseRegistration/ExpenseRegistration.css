@@ -1,7 +1,7 @@
 .row {
   margin: 20px;
 }
-.register {
+.expense-registration {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,7 +16,7 @@
 select {
   -webkit-appearance: listbox !important;
 }
-.register-form {
+.expense-registration-form {
   padding: 10px;
 }
 .form-align {
@@ -72,7 +72,7 @@ table td {
 }
 
 @media (max-width: 768px) {
-  .register {
+  .expense-registration {
     max-width: 100% !important;
   }
 }

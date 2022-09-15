@@ -6,21 +6,20 @@ import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-const EmployeeData = () => {
+const ExpenseListData = () => {
   const [employees, setEmployees] = useState([]);
   const { id } = useParams();
-
   useEffect(() => {
     loadEmployees();
   }, []);
 
   const loadEmployees = async () => {
-    const result = await axios.get('http://localhost:8080/employees');
+    const result = await axios.get('http://localhost:8080/expense-lists');
     setEmployees(result.data);
   };
 
   const deleteEmployee = async (id) => {
-    await axios.delete(`http://localhost:8080/employee/${id}`);
+    await axios.delete(`http://localhost:8080/expense-list/${id}`);
     loadEmployees();
   };
 
@@ -82,8 +81,7 @@ const EmployeeData = () => {
   );
 };
 
-export default EmployeeData;
-
+export default ExpenseListData;
 {
   /* <tr>
                 <th scope='row' key={index}>

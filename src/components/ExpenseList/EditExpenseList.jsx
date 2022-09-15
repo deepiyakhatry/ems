@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import './Employee.css';
+import './ExpenseList.css';
 import { Button, Container, Row, Col, Form, Table } from 'react-bootstrap';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
 
-const EditEmployee = () => {
+const EditExpenseList = () => {
   let navigate = useNavigate();
-
   const { id } = useParams();
-
   const [employee, setEmployee] = useState({
     employee_no: '',
     full_name: '',
@@ -21,7 +19,6 @@ const EditEmployee = () => {
     payment_date_to: '',
     approval_status: '',
   });
-
   const {
     employee_no,
     full_name,
@@ -44,13 +41,13 @@ const EditEmployee = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8080/employee/${id}`, employee);
-    navigate('/employee');
+    await axios.put(`http://localhost:8080/expense-list/${id}`, employee);
+    navigate('/expense-list');
   };
 
   const loadEmployee = async () => {
     const employeeResult = await axios.get(
-      `http://localhost:8080/employee/${id}`
+      `http://localhost:8080/expense-list/${id}`
     );
     setEmployee(employeeResult.data);
   };
@@ -180,7 +177,7 @@ const EditEmployee = () => {
             <Button variant='success' type='submit'>
               Update
             </Button>
-            <Link to='/employee-data' className='btn btn-danger'>
+            <Link to='/expense-list-data' className='btn btn-danger'>
               Cancel
             </Link>
           </Col>
@@ -190,4 +187,4 @@ const EditEmployee = () => {
   );
 };
 
-export default EditEmployee;
+export default EditExpenseList;

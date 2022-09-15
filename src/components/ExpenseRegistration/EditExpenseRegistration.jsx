@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import './Register.css';
+import './ExpenseRegistration.css';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
 
-const EditUser = () => {
+const EditExpenseRegistration = () => {
   let navigate = useNavigate();
-
   const { id } = useParams();
-
   const [user, setUser] = useState({
     dept_name: '',
     division: '',
@@ -20,7 +18,6 @@ const EditUser = () => {
     amount: '',
     note: '',
   });
-
   const {
     dept_name,
     division,
@@ -43,19 +40,21 @@ const EditUser = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8080/user/${id}`, user);
-    navigate('/employee');
+    await axios.put(`http://localhost:8080/expense-register/${id}`, user);
+    navigate('/expense-list');
   };
 
   const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8080/user/${id}`);
+    const result = await axios.get(
+      `http://localhost:8080/expense-register/${id}`
+    );
     setUser(result.data);
   };
 
   return (
     <div className='container'>
       <div className='row'>
-        <div className='register mt-5 m-auto'>
+        <div className='expense-registration mt-5 m-auto'>
           <h3 className='mb-4'>Edit Expense Data</h3>
           <form onSubmit={(e) => onSubmit(e)}>
             <table cellPadding='20px' className='first'>
@@ -214,7 +213,7 @@ const EditUser = () => {
                       </button>
                     </td>
                     <td>
-                      <Link to='/employee' className='btn btn-danger'>
+                      <Link to='/expense-list' className='btn btn-danger'>
                         Cancel
                       </Link>
                     </td>
@@ -229,4 +228,4 @@ const EditUser = () => {
   );
 };
 
-export default EditUser;
+export default EditExpenseRegistration;

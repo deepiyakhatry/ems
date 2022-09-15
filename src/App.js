@@ -1,11 +1,11 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
-import Register from './components/Register/Register';
-import Employee from './components/Employee/Employee';
-import EmployeeData from './components/Employee/EmployeeData';
-import EditUser from './components/Register/EditUser';
-import EditEmployee from './components/Employee/EditEmployee';
+import ExpenseRegistration from './components/ExpenseRegistration/ExpenseRegistration';
+import EditExpenseRegistration from './components/ExpenseRegistration/EditExpenseRegistration';
+import ExpenseList from './components/ExpenseList/ExpenseList';
+import ExpenseListData from './components/ExpenseList/ExpenseListData';
+import EditExpenseList from './components/ExpenseList/EditExpenseList';
 
 function App() {
   return (
@@ -13,11 +13,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/edituser/:id' element={<EditUser />} />
-          <Route path='/employee' element={<Employee />} />
-          <Route path='/employee-data' element={<EmployeeData />} />
-          <Route path='/editemployee/:id' element={<EditEmployee />} />
+          <Route path='/expense-register' element={<ExpenseRegistration />} />
+          <Route path='/edituser/:id' element={<EditExpenseRegistration />} />
+          <Route path='/expense-list' element={<ExpenseList />} />
+          <Route path='/expense-list-data' element={<ExpenseListData />} />
+          <Route path='/editemployee/:id' element={<EditExpenseList />} />
         </Routes>
       </BrowserRouter>
     </div>

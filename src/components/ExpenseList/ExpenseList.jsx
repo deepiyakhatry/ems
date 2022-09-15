@@ -1,30 +1,28 @@
 import React, { useState } from 'react';
-import './Employee.css';
+import './ExpenseList.css';
 import { Button, Container, Row, Col, Form, Table } from 'react-bootstrap';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
 
-const Employee = () => {
+const ExpenseList = () => {
   const [users, setUsers] = useState([]);
   const { id } = useParams();
-
   useEffect(() => {
     loadUsers();
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get('http://localhost:8080/users');
+    const result = await axios.get('http://localhost:8080/expense-registers');
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/user/${id}`);
+    await axios.delete(`http://localhost:8080/expense-register/${id}`);
     loadUsers();
   };
 
   let navigate = useNavigate();
-
   const [employee, setEmployee] = useState({
     employee_no: '',
     full_name: '',
@@ -36,7 +34,6 @@ const Employee = () => {
     payment_date_to: '',
     approval_status: 'Approved',
   });
-
   const {
     employee_no,
     full_name,
@@ -54,8 +51,8 @@ const Employee = () => {
   };
 
   const onSubmit = async (e) => {
-    await axios.post('http://localhost:8080/employee', employee);
-    navigate('/employee');
+    await axios.post('http://localhost:8080/expense-list', employee);
+    navigate('/expense-list');
     console.log(employee);
   };
 
@@ -184,7 +181,7 @@ const Employee = () => {
             <Button variant='success' type='submit'>
               Add Data
             </Button>
-            <Link to='/employee-data' className='btn btn-primary'>
+            <Link to='/expense-list-data' className='btn btn-primary'>
               Show Data
             </Link>
           </Col>
@@ -245,4 +242,4 @@ const Employee = () => {
   );
 };
 
-export default Employee;
+export default ExpenseList;

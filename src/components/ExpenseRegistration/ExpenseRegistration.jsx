@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import './Register.css';
+import './ExpenseRegistration.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Register = () => {
+const ExpenseRegistration = () => {
   let navigate = useNavigate();
-
   const [user, setUser] = useState({
     dept_name: '',
     division: '',
@@ -17,7 +16,6 @@ const Register = () => {
     amount: '',
     note: '',
   });
-
   const {
     dept_name,
     division,
@@ -36,14 +34,14 @@ const Register = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:8080/user', user);
-    navigate('/employee');
+    await axios.post('http://localhost:8080/expense-register', user);
+    navigate('/expense-list');
   };
 
   return (
     <div className='container'>
       <div className='row'>
-        <div className='register mt-5 m-auto'>
+        <div className='expense-registration mt-5 m-auto'>
           <h3 className='mb-4'>Expense Register</h3>
           <form onSubmit={(e) => onSubmit(e)}>
             <table cellPadding='20px' className='first'>
@@ -216,4 +214,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default ExpenseRegistration;
